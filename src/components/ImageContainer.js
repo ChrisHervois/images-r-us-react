@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Image from './Image';
 import Header from './Header'
+import SideMenu from './SideMenu'
 
 export default class ImageContainer extends React.Component {
     state = {
@@ -26,10 +27,11 @@ export default class ImageContainer extends React.Component {
 
         return (
             <div>
-                <Header
+                <SideMenu />
+                {/* <Header
                     value={searchTerm}
                     handleChange={this.handleChange.bind(this)}
-                />
+                /> */}
                 {this.state.images.map(image => {
                     if (image.item_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return <Image
