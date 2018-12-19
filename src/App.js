@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Images from './components/Images'
+import ImageContainer from './components/ImageContainer'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Images />
+        <ImageContainer />
       </div>
     );
   }

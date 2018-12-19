@@ -1,8 +1,8 @@
 import React from 'react';
-
 import axios from 'axios';
+import Image from './Image';
 
-export default class Images extends React.Component {
+export default class ImageContainer extends React.Component {
   state = {
     images: []
   }
@@ -19,7 +19,11 @@ export default class Images extends React.Component {
     return (
       <div>
         { this.state.images.map(image => {
-            return <img src={image.img_url} />
+            return <Image 
+            name={image.item_name}
+            description={image.item_description}
+            url={image.img_url} 
+            />
         } )}
       </div>
     )
