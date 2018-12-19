@@ -84,7 +84,10 @@ class SideMenu extends React.Component {
 
         return (
             <div>
-                <Header clickHandler={this.toggleDrawer('left', true)} />
+                <Header 
+                value={this.props.value}
+                handleChange={this.props.handleChange}
+                clickHandler={this.toggleDrawer('left', true)} />
                 <div>
                     {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button> */}
                     <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>

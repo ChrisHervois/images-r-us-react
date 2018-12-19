@@ -6,8 +6,7 @@ import SideMenu from './SideMenu'
 
 export default class ImageContainer extends React.Component {
     state = {
-        images: [],
-        searchTerm: ''
+        images: []
     }
 
     componentDidMount() {
@@ -18,16 +17,16 @@ export default class ImageContainer extends React.Component {
             })
     }
 
-    handleChange(event) {
-        this.setState({ searchTerm: event.target.value })
-    }
+    // handleChange(event) {
+    //     this.setState({ searchTerm: event.target.value })
+    // }
 
     render() {
-        const { searchTerm } = this.state;
+        const { searchTerm } = this.props;
 
         return (
             <div>
-                <SideMenu />
+                {/* <SideMenu /> */}
                 {/* <Header
                     value={searchTerm}
                     handleChange={this.handleChange.bind(this)}
