@@ -15,16 +15,16 @@ export default class ImageContainer extends React.Component {
 
 
     componentDidMount() {
-        axios.get(`https://rent-rockstar-server.herokuapp.com/`)
+        axios.get(`http://localhost:45184/api/images`)
             .then(res => {
-                const images = res.data;
+                const images = res.data.result;
                 this.setState({ images });
             })
     }
 
     render() {
         const { searchTerm, classes } = this.props;
-
+        console.log(this.state.images)
         // const styles = theme => ({
         //     root: {
         //         flexGrow: 1,
@@ -40,15 +40,22 @@ export default class ImageContainer extends React.Component {
             <div>
                 <Grid container spacing={24}>
                     {this.state.images.map(image => {
-                        if (image.item_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return <Grid item xs={3}>
-                                <Image
-                                    name={image.item_name}
-                                    description={image.item_description}
-                                    url={image.img_url}
-                                />
-                            </Grid>
-                        }
+                        return <Grid item xs={3}>
+                            <Image
+                                name="Title"
+                                description="Description"
+                                url={image.uri}
+                            />
+                        </Grid>
+                        // if (image.item_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        //     return <Grid item xs={3}>
+                        //         <Image
+                        //             name="Title"
+                        //             description="Description"
+                        //             url={image.uri}
+                        //         />
+                        //     </Grid>
+                        // }
                     })}
                 </Grid>
             </div>
