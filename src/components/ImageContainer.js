@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import Image from './Image';
+import Header from './Header'
 
 export default class ImageContainer extends React.Component {
   state = {
-    images: []
+    images: [],
+    searchTerm: ''
   }
 
   componentDidMount() {
@@ -15,9 +17,17 @@ export default class ImageContainer extends React.Component {
       })
   }
 
+  handleChange(event) {
+      this.setState({ searchTerm: event.target.value })
+  }
+
   render() {
     return (
       <div>
+          <Header 
+          value={this.state.searchTerm} 
+          handleChange={this.handleChange.bind(this)}
+          />
         { this.state.images.map(image => {
             return <Image 
             name={image.item_name}
