@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Header from './Header'
+import SourceSelector from './SourceSelector'
 
 const styles = {
     list: {
@@ -40,23 +41,8 @@ class SideMenu extends React.Component {
 
         const sideList = (
             <div className={classes.list}>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+                {/* <Divider /> */}
+                <SourceSelector />
             </div>
         );
 
@@ -92,10 +78,10 @@ class SideMenu extends React.Component {
                     {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button> */}
                     <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
                         <div
-                            tabIndex={0}
-                            role="button"
-                            onClick={this.toggleDrawer('left', false)}
-                            onKeyDown={this.toggleDrawer('left', false)}
+                            // tabIndex={0}
+                            // role="button"
+                            // onClick={this.toggleDrawer('left', false)}
+                            // onKeyDown={this.toggleDrawer('left', false)}
                         >
                             {sideList}
                         </div>

@@ -1,13 +1,18 @@
 import React from 'react';
 import axios from 'axios';
 import Image from './Image';
-import Header from './Header'
-import SideMenu from './SideMenu'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 export default class ImageContainer extends React.Component {
     state = {
         images: []
     }
+
+
+
 
     componentDidMount() {
         axios.get(`https://rent-rockstar-server.herokuapp.com/`)
@@ -17,30 +22,37 @@ export default class ImageContainer extends React.Component {
             })
     }
 
-    // handleChange(event) {
-    //     this.setState({ searchTerm: event.target.value })
-    // }
-
     render() {
-        const { searchTerm } = this.props;
+        const { searchTerm, classes } = this.props;
+
+        // const styles = theme => ({
+        //     root: {
+        //         flexGrow: 1,
+        //     },
+        //     paper: {
+        //         padding: theme.spacing.unit * 2,
+        //         textAlign: 'center',
+        //         color: theme.palette.text.secondary,
+        //     },
+        // });
 
         return (
             <div>
-                {/* <SideMenu /> */}
-                {/* <Header
-                    value={searchTerm}
-                    handleChange={this.handleChange.bind(this)}
-                /> */}
-                {this.state.images.map(image => {
-                    if (image.item_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        return <Image
-                            name={image.item_name}
-                            description={image.item_description}
-                            url={image.img_url}
-                        />
-                    }
-                })}
+                <Grid container spacing={24}>
+                    {this.state.images.map(image => {
+                        if (image.item_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return <Grid item xs={3}>
+                                <Image
+                                    name={image.item_name}
+                                    description={image.item_description}
+                                    url={image.img_url}
+                                />
+                            </Grid>
+                        }
+                    })}
+                </Grid>
             </div>
         )
     }
 }
+
