@@ -30,26 +30,44 @@ export default class FormDialog extends React.Component {
     };
 
     handleUpload = () => {
+        let formData = this.state;
+
         let url = 'http://localhost:45184/api/images'
         let config = {
-            headers: {'Content-Type': 'multipart/form-data'}
+            headers: { 'Content-Type': 'multipart/form-data' }
         };
-        let body = {
-            file: this.state.file,
-            altTag: this.state.altTag,
-            title: this.state.title,
-            description: this.state.description,
-            citation: this.state.citation,
-            courseCode: this.state.courseCode,
-            source: this.state.source,
-        }
-        axios.post(url, body, config)
+        
+        let queryStr = `?altTag=${formData.altTag}&citation=${formData.citation}&courseCode=${formData.courseCode}&title=${formData.title}&description=${formData.description}&source=${formData.source}`;
+
+        let data = new FormData();
+
+        // data.append('action', 'ADD');
+        // data.append('param', 0);
+        // data.append('secondParam', 0);
+        data.append('file', this.state.file);
+        
+        // let body = {
+        //     file: this.state.file,
+        //     altTag: this.state.altTag,
+        //     title: this.state.title,
+        //     description: this.state.description,
+        //     citation: this.state.citation,
+        //     courseCode: this.state.courseCode,
+        //     source: this.state.source,
+        // }
+        axios.post(`${url}${queryStr}`, data, config)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     fileChangedHandler = (event) => {
         const file = event.target.files[0]
         this.setState({ file })
-      }
+    }
 
     render() {
 
@@ -110,7 +128,7 @@ export default class FormDialog extends React.Component {
                             fullWidth
                         />
                         <input type="file" onChange={this.fileChangedHandler}></input>
-                        
+
 
                     </DialogContent>
                     <DialogActions>
