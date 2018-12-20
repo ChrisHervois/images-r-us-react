@@ -35,6 +35,10 @@ export default class ImageContainer extends React.Component {
                             <Image
                                 name={image.metadata.title}
                                 description={image.metadata.description}
+                                altTag={image.metadata.altTag}
+                                citation={image.metadata.citation}
+                                courseCode={image.metadata.courseCode}
+                                source={image.metadata.source}
                                 url={image.uri}
                             />
                         </Grid>

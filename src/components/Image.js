@@ -18,35 +18,64 @@ const styles = {
   },
 };
 
-function Image(props) {
-  const { classes } = props;
-  return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={props.url}
-          title={props.name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
-          </Typography>
+
+
+class Image extends React.Component {
+  state = {
+    showMetadata: false
+  }
+  
+  showData() {
+    this.setState({ showMetadata: !this.state.showMetadata })
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={this.props.url}
+            title={this.props.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {this.props.name}
+            </Typography>
+            <Typography component="p">
+              {this.props.description}
+            </Typography>
+          </CardContent>
+          {this.state.showMetadata ? <CardContent>
           <Typography component="p">
-            {props.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
-    </Card>
-  );
+              {this.props.altTag}
+            </Typography>
+            <Typography component="p">
+              {this.props.citation}
+            </Typography>
+            <Typography component="p">
+              {this.props.courseCode}
+            </Typography>
+            <Typography component="p">
+              {this.props.source}
+            </Typography>
+          </CardContent> : ""}
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary" onClick={this.showData.bind(this)}>
+            Show Metadata
+          </Button>
+          {/* <Button size="small" color="primary">
+            Learn More
+          </Button> */}
+        </CardActions>
+      </Card>
+    );
+  }
+  
+  
 }
 
 Image.propTypes = {
