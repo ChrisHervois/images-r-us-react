@@ -12,7 +12,7 @@ import axios from 'axios'
 export default class FormDialog extends React.Component {
     state = {
         open: false,
-        altTag: 'heres an alt tag',
+        altTag: '',
         citation: '',
         courseCode: '',
         title: '',
@@ -30,10 +30,14 @@ export default class FormDialog extends React.Component {
     };
 
     handleUpload = () => {
+        let formData = this.state;
+
         let url = 'http://localhost:45184/api/images'
         let config = {
             headers: { 'Content-Type': 'multipart/form-data' }
         };
+        
+        let queryStr = `?altTag=${formData.altTag}&citation=${formData.citation}&courseCode=${formData.courseCode}&title=${formData.title}&description=${formData.description}&source=${formData.source}`;
 
         let data = new FormData();
 
@@ -41,12 +45,7 @@ export default class FormDialog extends React.Component {
         // data.append('param', 0);
         // data.append('secondParam', 0);
         data.append('file', this.state.file);
-        data.append('altTag', this.state.altTag);
-        data.append('title', this.state.title);
-        data.append('description', this.state.description);
-        data.append('citation', this.state.citation);
-        data.append('courseCode', this.state.courseCode);
-        data.append('source', this.state.source);
+        
         // let body = {
         //     file: this.state.file,
         //     altTag: this.state.altTag,
@@ -56,7 +55,7 @@ export default class FormDialog extends React.Component {
         //     courseCode: this.state.courseCode,
         //     source: this.state.source,
         // }
-        axios.post(url, data, config)
+        axios.post(`${url}${queryStr}`, data, config)
             .then((res) => {
                 console.log(res)
             })
