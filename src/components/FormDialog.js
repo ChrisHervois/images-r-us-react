@@ -41,23 +41,14 @@ export default class FormDialog extends React.Component {
 
         let data = new FormData();
 
-        // data.append('action', 'ADD');
-        // data.append('param', 0);
-        // data.append('secondParam', 0);
+       
         data.append('file', this.state.file);
         
-        // let body = {
-        //     file: this.state.file,
-        //     altTag: this.state.altTag,
-        //     title: this.state.title,
-        //     description: this.state.description,
-        //     citation: this.state.citation,
-        //     courseCode: this.state.courseCode,
-        //     source: this.state.source,
-        // }
+        
         axios.post(`${url}${queryStr}`, data, config)
             .then((res) => {
                 console.log(res)
+                this.setState({ open: false });
             })
             .catch((err) => {
                 console.log(err)

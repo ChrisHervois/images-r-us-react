@@ -7,6 +7,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -19,9 +20,9 @@ const styles = theme => ({
 
 class SourceSelector extends React.Component {
   state = {
-    created: false,
+    internal: false,
     licensed: false,
-    domain: false,
+    PD: false,
   };
 
   handleChange = name => event => {
@@ -61,6 +62,9 @@ class SourceSelector extends React.Component {
               label="Public Domain"
             />
           </FormGroup>
+          <Button variant="contained" className={classes.button}>
+        Apply Filters
+      </Button>
           {/* <FormHelperText>Be careful</FormHelperText> */}
         </FormControl>
         {/* <FormControl required error={error} component="fieldset" className={classes.formControl}>

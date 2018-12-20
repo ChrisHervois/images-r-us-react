@@ -24,38 +24,21 @@ export default class ImageContainer extends React.Component {
 
     render() {
         const { searchTerm, classes } = this.props;
-        console.log(this.state.images)
-        // const styles = theme => ({
-        //     root: {
-        //         flexGrow: 1,
-        //     },
-        //     paper: {
-        //         padding: theme.spacing.unit * 2,
-        //         textAlign: 'center',
-        //         color: theme.palette.text.secondary,
-        //     },
-        // });
+        
 
         return (
             <div>
                 <Grid container spacing={24}>
                     {this.state.images.map(image => {
-                        return <Grid item xs={3}>
+                        if (image.metadata.title !== null && image.metadata.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return <Grid item xs={3}>
                             <Image
-                                name="Title"
-                                description="Description"
+                                name={image.metadata.title}
+                                description={image.metadata.description}
                                 url={image.uri}
                             />
                         </Grid>
-                        // if (image.item_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                        //     return <Grid item xs={3}>
-                        //         <Image
-                        //             name="Title"
-                        //             description="Description"
-                        //             url={image.uri}
-                        //         />
-                        //     </Grid>
-                        // }
+                        }
                     })}
                 </Grid>
             </div>
