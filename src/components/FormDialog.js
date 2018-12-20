@@ -12,7 +12,7 @@ import axios from 'axios'
 export default class FormDialog extends React.Component {
     state = {
         open: false,
-        altTag: '',
+        altTag: 'heres an alt tag',
         citation: '',
         courseCode: '',
         title: '',
@@ -32,24 +32,43 @@ export default class FormDialog extends React.Component {
     handleUpload = () => {
         let url = 'http://localhost:45184/api/images'
         let config = {
-            headers: {'Content-Type': 'multipart/form-data'}
+            headers: { 'Content-Type': 'multipart/form-data' }
         };
-        let body = {
-            file: this.state.file,
-            altTag: this.state.altTag,
-            title: this.state.title,
-            description: this.state.description,
-            citation: this.state.citation,
-            courseCode: this.state.courseCode,
-            source: this.state.source,
-        }
-        axios.post(url, body, config)
+
+        let data = new FormData();
+
+        // data.append('action', 'ADD');
+        // data.append('param', 0);
+        // data.append('secondParam', 0);
+        data.append('file', this.state.file);
+        data.append('altTag', this.state.altTag);
+        data.append('title', this.state.title);
+        data.append('description', this.state.description);
+        data.append('citation', this.state.citation);
+        data.append('courseCode', this.state.courseCode);
+        data.append('source', this.state.source);
+        // let body = {
+        //     file: this.state.file,
+        //     altTag: this.state.altTag,
+        //     title: this.state.title,
+        //     description: this.state.description,
+        //     citation: this.state.citation,
+        //     courseCode: this.state.courseCode,
+        //     source: this.state.source,
+        // }
+        axios.post(url, data, config)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     fileChangedHandler = (event) => {
         const file = event.target.files[0]
         this.setState({ file })
-      }
+    }
 
     render() {
 
@@ -110,7 +129,7 @@ export default class FormDialog extends React.Component {
                             fullWidth
                         />
                         <input type="file" onChange={this.fileChangedHandler}></input>
-                        
+
 
                     </DialogContent>
                     <DialogActions>
