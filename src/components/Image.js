@@ -14,7 +14,7 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 300,
   },
 };
 
@@ -26,7 +26,7 @@ function Image(props) {
         <CardMedia
           className={classes.media}
           image={props.url}
-          title="Contemplative Reptile"
+          title={props.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

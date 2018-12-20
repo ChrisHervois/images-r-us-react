@@ -16,6 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <SideMenu
+          className="header"
           value={this.state.searchTerm}
           handleChange={this.handleChange.bind(this)}
         />

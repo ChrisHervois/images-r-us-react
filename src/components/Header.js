@@ -16,6 +16,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import FormDialog from './FormDialog'
 
 const styles = theme => ({
     root: {
@@ -188,31 +190,9 @@ class Header extends React.Component {
                                 />
                             </div>
                             <div className={classes.grow} />
-                            {/* <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </div> */}
+                            <div className={classes.sectionDesktop}>
+                                <FormDialog />
+                            </div>
                         </Toolbar>
                     </AppBar>
                     {renderMenu}
